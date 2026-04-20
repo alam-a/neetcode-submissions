@@ -1,0 +1,15 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        res = []
+        path = []
+        def dfs(start: int) -> None:
+            res.append(path[:])
+            for i in range(start, len(nums)):
+                # if i>start and nums[i] == nums[i-1]:
+                #     continue
+                path.append(nums[i])
+                dfs(i+1)
+                path.remove(nums[i])
+        dfs(0)
+        return res
